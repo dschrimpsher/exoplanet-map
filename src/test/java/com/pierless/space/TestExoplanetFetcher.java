@@ -1,10 +1,10 @@
 package com.pierless.space;
 
 import com.google.api.client.http.HttpResponseException;
+import com.pierless.space.core.ExoplanetFetcher;
+import com.pierless.space.core.Star;
 import com.pierless.space.data.TABLEDATA;
 import com.pierless.space.data.TR;
-import com.pierless.space.data.VOTABLE;
-import com.pierless.space.display.Star;
 import com.pierless.space.display.XYChart;
 import org.junit.Test;
 
@@ -19,8 +19,8 @@ public class TestExoplanetFetcher {
         try {
             try {
                 XYChart xyChart = new XYChart();
-                xyChart.setScaleX(20);
-                xyChart.setScaleY(20);
+                xyChart.setScaleX(10);
+                xyChart.setScaleY(10);
                 ExoplanetFetcher.run();
 
                 //crate stars

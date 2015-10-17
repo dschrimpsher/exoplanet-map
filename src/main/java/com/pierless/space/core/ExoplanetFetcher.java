@@ -1,4 +1,4 @@
-package com.pierless.space;
+package com.pierless.space.core;
 
 import com.google.api.client.http.*;
 import com.google.api.client.http.javanet.NetHttpTransport;
@@ -38,7 +38,7 @@ public class ExoplanetFetcher {
 
 
 //        System.out.println(feed.toString());
-
+//
 //        TABLEDATA tabledata = feed.getRESOURCE().getTABLE().getDATA().getTABLEDATA();
 //        for (int i = 0; i < tabledata.getTR().length; i++) {
 //            TR tr = tabledata.getTR(i);

@@ -1,13 +1,15 @@
 package com.pierless.space.display;
 
 
-import com.pierless.space.data.TR;
+import com.pierless.space.core.GalacticCoordinate3D;
+import com.pierless.space.core.Star;
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Logger;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
-import java.awt.geom.Line2D;
 import java.util.ArrayList;
 
 /**
@@ -54,9 +56,15 @@ public class XYChart extends JApplet {
         this.thingsToGraph.add(thingToGraph);
     }
 
+    static final Logger logger = Logger.getLogger(XYChart.class);
 
     @Override
     public void paint(Graphics g) {
+
+        BasicConfigurator.configure();
+
+
+
         Graphics2D g2 = (Graphics2D) g;
         g2.setBackground(Color.black);
 
@@ -73,9 +81,18 @@ public class XYChart extends JApplet {
         g2.drawString("Sol", 0, 0);
 
 
+
+
+
         //500 pixels = 7500 parsecs
         //7500/500 = 15 parsecs / pixel
         //Draw the galatic center
+        GalacticCoordinate3D galaticCenterCoordinates = new GalacticCoordinate3D();
+        galaticCenterCoordinates.setLatitude(0.);
+        galaticCenterCoordinates.setLongitude(0.);
+        galaticCenterCoordinates.setDistance(8000.);
+        
+
         g2.translate(0.0, -midpoint);
         g2.setPaint(Color.white);
         g2.setStroke(new BasicStroke(5.0f));
@@ -84,14 +101,20 @@ public class XYChart extends JApplet {
         g2.setTransform(center);
 
 
+
         //17.5, -28.92 is toward the galatic center
         // So 180 + 17.5 or 197.5 is down
         // 90 + 17.5 is left 107.5
         // 270 + 17.5 is right = 287.5
 
         for (Star star : thingsToGraph) {
-            System.out.println("Plotting " + star.getName() + " (" + star.getGalX() + ", " + star.getGalY() + ")");
-            g2.translate(star.getGalX()*scaleX , -star.getGalY()*scaleY );
+
+
+            logger.info("Plotting " + star.getName() + " " + star.getCoordinate3D().toString());
+//            System.out.println("Plotting " + star.getName() + " " + star.getCoordinate3D().toString());
+            double x = star.getCoordinate3D().getX();
+            double y = star.getCoordinate3D().getY();
+            g2.translate(x*scaleX , -y*scaleY );
             //First draw the sun
             if (star.getDiameter() > .8)
                 g2.setPaint(Color.red);
