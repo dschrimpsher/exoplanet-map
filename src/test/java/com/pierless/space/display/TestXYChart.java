@@ -1,54 +1,105 @@
 package com.pierless.space.display;
 
 import com.pierless.space.core.CelestialObject;
+import org.apache.log4j.PropertyConfigurator;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Created by dschrimpsher on 7/26/15.
  */
 public class TestXYChart {
 
-    @Ignore
+    ArrayList<DisplayObject> displayObjectArrayList;
+
+    @Before
+    public void setup() {
+        PropertyConfigurator.configure("log4j.properties");
+        displayObjectArrayList = new ArrayList<DisplayObject>();
+
+        DisplayObject displayObject = new DisplayObject();
+        displayObject.setName("Test Center");
+        displayObject.setColor(Color.ORANGE);
+        displayObject.setX(0);
+        displayObject.setY(0);
+        displayObjectArrayList.add(displayObject);
+
+        displayObject = new DisplayObject();
+        displayObject.setName("Test Right");
+        displayObject.setColor(Color.RED);
+        displayObject.setX(500);
+        displayObject.setY(0);
+        displayObjectArrayList.add(displayObject);
+
+        displayObject = new DisplayObject();
+        displayObject.setName("Test Left");
+        displayObject.setColor(Color.GREEN);
+        displayObject.setX(-500);
+        displayObject.setY(0);
+        displayObjectArrayList.add(displayObject);
+
+        displayObject = new DisplayObject();
+        displayObject.setName("Test Top");
+        displayObject.setColor(Color.BLUE);
+        displayObject.setX(0);
+        displayObject.setY(500);
+        displayObjectArrayList.add(displayObject);
+
+        displayObject = new DisplayObject();
+        displayObject.setName("Test Bottom");
+        displayObject.setColor(Color.MAGENTA);
+        displayObject.setX(0);
+        displayObject.setY(-500);
+        displayObjectArrayList.add(displayObject);
+
+
+        displayObject = new DisplayObject();
+        displayObject.setName("Test Bottom/Right");
+        displayObject.setColor(Color.MAGENTA);
+        displayObject.setX(500);
+        displayObject.setY(-500);
+        displayObjectArrayList.add(displayObject);
+
+        displayObject = new DisplayObject();
+        displayObject.setName("Test Bottom/Left");
+        displayObject.setColor(Color.MAGENTA);
+        displayObject.setX(-500);
+        displayObject.setY(-500);
+        displayObjectArrayList.add(displayObject);
+
+        displayObject = new DisplayObject();
+        displayObject.setName("Test Top/Right");
+        displayObject.setColor(Color.MAGENTA);
+        displayObject.setX(500);
+        displayObject.setY(500);
+        displayObjectArrayList.add(displayObject);
+
+        displayObject = new DisplayObject();
+        displayObject.setName("Test Top/Left");
+        displayObject.setColor(Color.MAGENTA);
+        displayObject.setX(-500);
+        displayObject.setY(500);
+        displayObjectArrayList.add(displayObject);
+    }
+
     @Test
     public void testChart() {
         XYChart xyChart = new XYChart();
-
-        double ra = 100.0;
-        double dec = 0.0;
-        double expectedLong = 211.6272;
-        double expectedLat = -2.5447;
-
-        xyChart.setScaleY(1);
-        xyChart.setScaleX(1);
-        CelestialObject celestialObject = new CelestialObject();
-        celestialObject.setName("Test 1");
-        celestialObject.setDistance(50);
-//        celestialObject.setRa(ra);
-//        celestialObject.setDec(dec);
-//        celestialObject.compute();
-
-        Assert.assertEquals(celestialObject.getCoordinate3D().getLongitude(), expectedLong, 0.0001);
-        Assert.assertEquals(celestialObject.getCoordinate3D().getLatitude(), expectedLat, 0.0001);
-
-
-
-
-
-        xyChart.addThingsToGraph(celestialObject);
-
-        CelestialObject celestialObject2 = new CelestialObject();
-        celestialObject2.setName("Test 2");
-        celestialObject2.setDistance(50);
-//        celestialObject2.setRa(289.5);
-//        celestialObject2.compute();
-
-        xyChart.addThingsToGraph(celestialObject2);
-
+        for (DisplayObject displayObject : displayObjectArrayList) {
+            xyChart.addThingsToGraph(displayObject);
+        }
         xyChart.BuildEllipse();
+
+
+
         try {
-            Thread.sleep(5000);
+            Thread.sleep(20000);
         }
         catch (InterruptedException e) {
 

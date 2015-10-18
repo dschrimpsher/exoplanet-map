@@ -7,7 +7,7 @@ import java.awt.*;
  */
 public class DisplayObject {
 
-    private String label;
+    private String name;
     private int x;
     private int y;
     private Color color;
@@ -37,12 +37,12 @@ public class DisplayObject {
         this.x = x;
     }
 
-    public String getLabel() {
+    public String getName() {
 
-        return label;
+        return name;
     }
 
-    public void setLabel(String label) {
-        this.label = label;
+    public void setName(String name) {
+        this.name = name;
     }
 }
