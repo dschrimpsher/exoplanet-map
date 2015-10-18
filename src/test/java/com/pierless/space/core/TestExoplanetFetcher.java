@@ -93,11 +93,24 @@ public class TestExoplanetFetcher {
         Assert.assertTrue("Planet Distance is wrong " + data[2], data[2].equals("1.35"));
         Assert.assertTrue("Planet RA wrong " + data[3], data[3].equals("219.896164") );
         Assert.assertTrue("Planet DEC wrong " + data[4], data[4].equals("-60.837154") );
-        Assert.assertTrue("Planet Jupiter Masses is wrong " + data[6], data[6].equals("0.00360") );
-        Assert.assertTrue("Planet array index is wrong " + data[7], data[7].equals("0") );
+        Assert.assertTrue("Planet Jupiter Masses is wrong " + data[6], data[6].equals("0.00360"));
+        Assert.assertTrue("Planet array index is wrong " + data[7], data[7].equals("0"));
 
     }
 
+
+    @Test
+    public void testExecute() {
+        ExoplanetFetcher exoplanetFetcher = new ExoplanetFetcher();
+        VOTABLE votable = exoplanetFetcher.execute();
+        Assert.assertNotNull(votable);
+        Assert.assertTrue(votable.getRESOURCE().getTABLE().getDATA().getTABLEDATA().getTR().length > 1);
+
+
+
+
+
+    }
 //    @Test
 //    @Ignore
 //    public void testExoplanetGet() {
