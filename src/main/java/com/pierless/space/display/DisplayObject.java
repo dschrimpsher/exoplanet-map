@@ -1,5 +1,7 @@
 package com.pierless.space.display;
 
+import com.pierless.space.core.CelestialObject;
+
 import java.awt.*;
 
 /**
@@ -11,6 +13,22 @@ public class DisplayObject {
     private int x;
     private int y;
     private Color color;
+
+
+    public void builder(CelestialObject celestialObject) {
+        setX(celestialObject.getCoordinate3D().getX().intValue());
+        setY(celestialObject.getCoordinate3D().getY().intValue());
+        setName(celestialObject.getName());
+        if (celestialObject.getDiameter() < .2) {
+            setColor(Color.red);
+        }
+        else  if (celestialObject.getDiameter() > .5) {
+            setColor(Color.ORANGE);
+        }
+        else {
+            setColor(Color.BLUE);
+        }
+    }
 
     public Color getColor() {
         return color;
