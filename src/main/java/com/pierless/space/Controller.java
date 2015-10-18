@@ -9,14 +9,28 @@ import com.pierless.space.data.TR;
 import com.pierless.space.data.VOTABLE;
 import com.pierless.space.display.DisplayObject;
 import com.pierless.space.display.XYChart;
+import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Created by dschrimpsher on 10/17/15.
  */
 public class Controller {
+
+    static final Logger logger = Logger.getLogger(Controller.class);
+
+    private double scale;
+
+    public double getScale() {
+        return scale;
+    }
+
+    public void setScale(double scale) {
+        this.scale = scale;
+    }
 
     /**
      * 17h 45m 40.0s   -28° 43' 0"   //   +266.4168°  /  -28° 43.00'  -28.7167°
@@ -86,7 +100,7 @@ public class Controller {
         XYChart xyChart = new XYChart();
         for (CelestialObject celestialObject : celestialObjects) {
             DisplayObject displayObject = new DisplayObject();
-            displayObject.builder(celestialObject, 1);
+            displayObject.builder(celestialObject, scale);
             xyChart.addThingsToGraph(displayObject);
         }
 
@@ -97,9 +111,21 @@ public class Controller {
 
 
     public static void main(String args[]) {
+        double scale = 1.;
+        if (args.length >= 1) {
+            scale = Double.parseDouble(args[0]);
+        }
         PropertyConfigurator.configure("log4j.properties");
+        logger.info(scale);
+        logger.info(args[0]);
         Controller controller = new Controller();
+        controller.setScale(scale);
         controller.init();
+        Scanner scanner = new Scanner(System.in);
+        String entry = scanner.next();
+        if (entry == "q") {
+            System.exit(0);
+        }
     }
 
 }

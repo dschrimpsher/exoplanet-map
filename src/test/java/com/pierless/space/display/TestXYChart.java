@@ -99,7 +99,7 @@ public class TestXYChart {
 
 
         try {
-            Thread.sleep(20000);
+            Thread.sleep(5000);
         }
         catch (InterruptedException e) {
 

@@ -18,9 +18,9 @@ public class DisplayObject {
         builder(celestialObject, 1);
     }
 
-    public void builder(CelestialObject celestialObject, int scale) {
-        setX(celestialObject.getCoordinate3D().getX().intValue() * scale);
-        setY(celestialObject.getCoordinate3D().getY().intValue()*scale);
+    public void builder(CelestialObject celestialObject, double scale) {
+        setX((int)(celestialObject.getCoordinate3D().getX().intValue() * scale));
+        setY((int)(celestialObject.getCoordinate3D().getY().intValue() * scale));
         setName(celestialObject.getName());
         if (celestialObject.getDiameter() < 0.0 ) {
             setColor(Color.PINK);
