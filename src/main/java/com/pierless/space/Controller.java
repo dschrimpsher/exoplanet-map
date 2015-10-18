@@ -21,6 +21,7 @@ public class Controller {
     /**
      * 17h 45m 40.0s   -28° 43' 0"   //   +266.4168°  /  -28° 43.00'  -28.7167°
      * Defintino of GC is GCS(0, 0)
+     *
      * @return
      */
     protected CelestialObject createGalacticCenter() {
@@ -69,8 +70,7 @@ public class Controller {
             }
             star.setName(tr.getTD(1));
             star.convert();
-            if (star.getName().equals("51 Peg b"))
-                celestialObjects.add(star);
+            celestialObjects.add(star);
         }
         celestialObjects.add(createGalacticCenter());
 
@@ -96,7 +96,7 @@ public class Controller {
     }
 
 
-    public static void main (String args[]) {
+    public static void main(String args[]) {
         PropertyConfigurator.configure("log4j.properties");
         Controller controller = new Controller();
         controller.init();
