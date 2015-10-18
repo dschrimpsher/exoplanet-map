@@ -1,19 +1,11 @@
 package com.pierless.space.core;
 
-import com.google.api.client.http.HttpResponseException;
-import com.pierless.space.core.ExoplanetFetcher;
-import com.pierless.space.core.Star;
-import com.pierless.space.data.PARAM;
-import com.pierless.space.data.TABLEDATA;
 import com.pierless.space.data.TR;
 import com.pierless.space.data.VOTABLE;
-import com.pierless.space.display.XYChart;
-import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.xmlpull.v1.XmlPullParserException;
 

@@ -2,7 +2,7 @@ package com.pierless.space.display;
 
 
 import com.pierless.space.core.GalacticCoordinate3D;
-import com.pierless.space.core.Star;
+import com.pierless.space.core.CelestialObject;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
@@ -20,7 +20,7 @@ public class XYChart extends JApplet {
 
     private final double midpoint = 500;
 
-    ArrayList<Star> thingsToGraph = new ArrayList<Star>();
+    ArrayList<CelestialObject> thingsToGraph = new ArrayList<CelestialObject>();
 
     private int scaleX;
     private int scaleY;
@@ -44,15 +44,15 @@ public class XYChart extends JApplet {
 
     }
 
-    public ArrayList<Star> getThingsToGraph() {
+    public ArrayList<CelestialObject> getThingsToGraph() {
         return thingsToGraph;
     }
 
-    public void setThingsToGraph(ArrayList<Star> thingsToGraph) {
+    public void setThingsToGraph(ArrayList<CelestialObject> thingsToGraph) {
         this.thingsToGraph = thingsToGraph;
     }
 
-    public void addThingsToGraph(Star thingToGraph) {
+    public void addThingsToGraph(CelestialObject thingToGraph) {
         this.thingsToGraph.add(thingToGraph);
     }
 
@@ -107,26 +107,26 @@ public class XYChart extends JApplet {
         // 90 + 17.5 is left 107.5
         // 270 + 17.5 is right = 287.5
 
-        for (Star star : thingsToGraph) {
+        for (CelestialObject celestialObject : thingsToGraph) {
 
 
-            logger.info("Plotting " + star.getName() + " " + star.getCoordinate3D().toString());
+            logger.info("Plotting " + celestialObject.getName() + " " + celestialObject.getCoordinate3D().toString());
 //            System.out.println("Plotting " + star.getName() + " " + star.getCoordinate3D().toString());
-            double x = star.getCoordinate3D().getX();
-            double y = star.getCoordinate3D().getY();
+            double x = celestialObject.getCoordinate3D().getX();
+            double y = celestialObject.getCoordinate3D().getY();
             g2.translate(x*scaleX , -y*scaleY );
             //First draw the sun
-            if (star.getDiameter() > .8)
+            if (celestialObject.getDiameter() > .8)
                 g2.setPaint(Color.red);
-            else if (star.getDiameter() > .2)
+            else if (celestialObject.getDiameter() > .2)
                 g2.setPaint(Color.blue);
-            else if (star.getDiameter() > 0.0)
+            else if (celestialObject.getDiameter() > 0.0)
                 g2.setPaint(Color.green);
             else
                 g2.setPaint(Color.cyan);
             g2.setStroke(new BasicStroke(5.0f));
             g2.draw(new Ellipse2D.Double(0.5, 0.5, 0.1, 0.1));
-            g2.drawString(star.getName() + star.getRa(), 0, 0);
+            g2.drawString(celestialObject.getName() + celestialObject.getEquatorialCoordinate().getRightAscension(), 0, 0);
             g2.setTransform(center);
         }
 
