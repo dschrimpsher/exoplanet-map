@@ -14,10 +14,13 @@ public class DisplayObject {
     private int y;
     private Color color;
 
-
     public void builder(CelestialObject celestialObject) {
-        setX(celestialObject.getCoordinate3D().getX().intValue());
-        setY(celestialObject.getCoordinate3D().getY().intValue());
+        builder(celestialObject, 1);
+    }
+
+    public void builder(CelestialObject celestialObject, int scale) {
+        setX(celestialObject.getCoordinate3D().getX().intValue() * scale);
+        setY(celestialObject.getCoordinate3D().getY().intValue()*scale);
         setName(celestialObject.getName());
         if (celestialObject.getDiameter() < .2) {
             setColor(Color.red);
@@ -25,10 +28,15 @@ public class DisplayObject {
         else  if (celestialObject.getDiameter() > .5) {
             setColor(Color.ORANGE);
         }
-        else {
+        else if (celestialObject.getDiameter() < 100.0){
             setColor(Color.BLUE);
         }
+        else {
+            setColor(Color.WHITE);
+        }
     }
+
+
 
     public Color getColor() {
         return color;

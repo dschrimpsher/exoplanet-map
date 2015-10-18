@@ -1,5 +1,6 @@
 package com.pierless.space.core;
 
+import com.pierless.space.display.DisplayObject;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,7 +12,7 @@ public class TestGalacticCoordinate3D {
 
 
     private static final double EPSILON = 0.0001;
-    public   EquatorialCoordinate[] equatorialCoordinates;
+    public EquatorialCoordinate[] equatorialCoordinates;
     public GalacticCoordinate3D[] galacticCoordinate3Ds;
     public Double[] distances;
 
@@ -19,9 +20,9 @@ public class TestGalacticCoordinate3D {
     @Before
     public void setup() {
 
-        equatorialCoordinates = new EquatorialCoordinate[3];
-        galacticCoordinate3Ds = new GalacticCoordinate3D[3];
-        distances = new Double[3];
+        equatorialCoordinates = new EquatorialCoordinate[5];
+        galacticCoordinate3Ds = new GalacticCoordinate3D[5];
+        distances = new Double[5];
 
         //Vega
         equatorialCoordinates[0] = new EquatorialCoordinate();
@@ -55,6 +56,27 @@ public class TestGalacticCoordinate3D {
         galacticCoordinate3Ds[2].setLatitude(-8.9586);
 
         distances[2] = 1.97; //parsecs
+
+        //Galactic Center's
+
+
+        galacticCoordinate3Ds[3] = new GalacticCoordinate3D();
+        galacticCoordinate3Ds[3].setLongitude(0.);
+        galacticCoordinate3Ds[3].setLatitude(0.);
+
+        distances[3] = 8000.; //parsecs
+
+//        <TR><TD></TD><TD>51 Peg b</TD><TD>15.36</TD><TD>344.366577</TD><TD>20.768833</TD><TD></TD><TD>0.47200</TD><TD>54</TD></TR>
+        //51 Peg b
+        equatorialCoordinates[4] = new EquatorialCoordinate();
+        equatorialCoordinates[4].setRightAscension(344.366577);
+        equatorialCoordinates[4].setDeclination(20.768833);
+
+        galacticCoordinate3Ds[4] = new GalacticCoordinate3D();
+        galacticCoordinate3Ds[4].setLongitude(90.0627);
+        galacticCoordinate3Ds[4].setLatitude(-34.7273);
+
+        distances[4] = 15.36; //parsecs
     }
 
     @Test
@@ -63,18 +85,47 @@ public class TestGalacticCoordinate3D {
         GalacticCoordinate3D test = new GalacticCoordinate3D();
         test.convertToGalatic(equatorialCoordinates[0], distances[0]);
         Assert.assertTrue("Long is wrong " + test.getLongitude(), test.getLongitude() - galacticCoordinate3Ds[0].getLongitude() < EPSILON);
-        Assert.assertTrue("Lat is wrong " + test.getLatitude(), test.getLatitude()  - galacticCoordinate3Ds[0].getLatitude() < EPSILON);
-        Assert.assertTrue("Dist is wrong "+ test.getDistance(), test.getDistance() -  distances[0] < EPSILON);
+        Assert.assertTrue("Lat is wrong " + test.getLatitude(), test.getLatitude() - galacticCoordinate3Ds[0].getLatitude() < EPSILON);
+        Assert.assertTrue("Dist is wrong " + test.getDistance(), test.getDistance() - distances[0] < EPSILON);
+
+        Assert.assertTrue("X is wrong" + test.getX(), test.getX() + 7.023452031 < EPSILON);
+        Assert.assertTrue("Y is wrong" + test.getY(), test.getY() - 2.9812785104 < EPSILON);
+
 
         test.convertToGalatic(equatorialCoordinates[1], distances[1]);
         Assert.assertTrue("Long is wrong " + test.getLongitude(), test.getLongitude() - galacticCoordinate3Ds[1].getLongitude() < EPSILON);
-        Assert.assertTrue("Lat is wrong " + test.getLatitude(), test.getLatitude()  - galacticCoordinate3Ds[1].getLatitude() < EPSILON);
-        Assert.assertTrue("Dist is wrong "+ test.getDistance(), test.getDistance() -  distances[1] < EPSILON);
+        Assert.assertTrue("Lat is wrong " + test.getLatitude(), test.getLatitude() - galacticCoordinate3Ds[1].getLatitude() < EPSILON);
+        Assert.assertTrue("Dist is wrong " + test.getDistance(), test.getDistance() - distances[1] < EPSILON);
 
         test.convertToGalatic(equatorialCoordinates[2], distances[2]);
         Assert.assertTrue("Long is wrong " + test.getLongitude(), test.getLongitude() - galacticCoordinate3Ds[2].getLongitude() < EPSILON);
-        Assert.assertTrue("Lat is wrong " + test.getLatitude(), test.getLatitude()  - galacticCoordinate3Ds[2].getLatitude() < EPSILON);
-        Assert.assertTrue("Dist is wrong "+ test.getDistance(), test.getDistance() -  distances[2] < EPSILON);
+        Assert.assertTrue("Lat is wrong " + test.getLatitude(), test.getLatitude() - galacticCoordinate3Ds[2].getLatitude() < EPSILON);
+        Assert.assertTrue("Dist is wrong " + test.getDistance(), test.getDistance() - distances[2] < EPSILON);
+
+
+        test = new GalacticCoordinate3D();
+        test.convertToGalatic(equatorialCoordinates[4], distances[4]);
+        Assert.assertTrue("51 Peg b Long is wrong " + test.getLongitude(), Math.abs(test.getLongitude() - galacticCoordinate3Ds[4].getLongitude()) < EPSILON);
+        Assert.assertTrue("51 Peg b Lat is wrong " + test.getLatitude(), Math.abs(test.getLatitude() - galacticCoordinate3Ds[4].getLatitude()) < EPSILON);
+        Assert.assertTrue("51 Peg b Dist is wrong " + test.getDistance(), Math.abs(test.getDistance() - distances[4]) < EPSILON);
+
+        Assert.assertTrue("51 Peg b X is wrong" + test.getX(), Math.abs(test.getX() + 15.3599908) < EPSILON);
+        Assert.assertTrue("51 Peg b Y is wrong" + test.getY(), Math.abs(test.getY() + 0.016808774) < EPSILON);
+
+
+    }
+
+    @Test
+    public void testGalaticCenter() {
+        GalacticCoordinate3D test = new GalacticCoordinate3D();
+        test.setDistance(distances[3]);
+        test.setLongitude(galacticCoordinate3Ds[3].getLongitude());
+        test.setLatitude(galacticCoordinate3Ds[3].getLatitude());
+        Assert.assertTrue("Long is wrong " + test.getLongitude(), test.getLongitude() - galacticCoordinate3Ds[3].getLongitude() < EPSILON);
+        Assert.assertTrue("Lat is wrong " + test.getLatitude(), test.getLatitude() - galacticCoordinate3Ds[3].getLatitude() < EPSILON);
+        Assert.assertTrue("Dist is wrong " + test.getDistance(), test.getDistance() - distances[3] < EPSILON);
+        Assert.assertTrue("X is wrong" + test.getX(), test.getX() < EPSILON);
+        Assert.assertTrue("Y is wrong" + test.getY(), test.getY() - 8000 < EPSILON);
 
 
     }

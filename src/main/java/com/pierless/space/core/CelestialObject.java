@@ -52,7 +52,7 @@ public class CelestialObject {
         this.diameter = diameter;
     }
 
-    public void covert() {
+    public void convert() {
         coordinate3D = new GalacticCoordinate3D();
         coordinate3D.convertToGalatic(equatorialCoordinate, distance);
     }

@@ -29,11 +29,11 @@ public class GalacticCoordinate3D {
     }
 
     public Double getX() {
-        return Math.cos(longitude) * distance;
+        return Math.cos(Math.toRadians(longitude+90)) * distance;
     }
 
     public Double getY() {
-        return Math.sin(longitude) * distance;
+        return Math.sin(Math.toRadians(longitude+90)) * distance;
     }
 
 

@@ -20,7 +20,7 @@ public class TestCelestialObject {
 
         equatorialCoordinates = new EquatorialCoordinate[3];
         galacticCoordinate3Ds = new GalacticCoordinate3D[3];
-        distances = new Double[3];
+        distances = new Double[4];
 
         //Vega
         equatorialCoordinates[0] = new EquatorialCoordinate();
@@ -54,6 +54,10 @@ public class TestCelestialObject {
         galacticCoordinate3Ds[2].setLatitude(-8.9586);
 
         distances[2] = 197.; //parsecs
+
+
+        
+        
     }
 
     @Test
@@ -63,7 +67,7 @@ public class TestCelestialObject {
         celestialObject.setDiameter(1.0);
         celestialObject.setDistance(distances[0]);
         celestialObject.setEquatorialCoordinate(equatorialCoordinates[0]);
-        celestialObject.covert();
+        celestialObject.convert();
         Assert.assertTrue("Long is wrong " + celestialObject.getCoordinate3D().getLongitude(), celestialObject.getCoordinate3D().getLongitude() - galacticCoordinate3Ds[0].getLongitude() < EPSILON);
         Assert.assertTrue("Lat is wrong " + celestialObject.getCoordinate3D().getLatitude(), celestialObject.getCoordinate3D().getLatitude()  - galacticCoordinate3Ds[0].getLatitude() < EPSILON);
         Assert.assertTrue("Dist is wrong "+ celestialObject.getCoordinate3D().getDistance(), celestialObject.getCoordinate3D().getDistance() -  distances[0] < EPSILON);
