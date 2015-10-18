@@ -59,7 +59,7 @@ public class Controller {
             if (tr.getTD(0) == null) {
                 if (tr.getTD(5) == null) {
                     if (tr.getTD(6) == null) {
-                        star.setDiameter(1000.0);
+                        star.setDiameter(-1.0);
                     } else
                         star.setDiameter(Double.parseDouble(tr.getTD(6)));
                 } else {

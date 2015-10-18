@@ -22,13 +22,16 @@ public class DisplayObject {
         setX(celestialObject.getCoordinate3D().getX().intValue() * scale);
         setY(celestialObject.getCoordinate3D().getY().intValue()*scale);
         setName(celestialObject.getName());
-        if (celestialObject.getDiameter() < .2) {
+        if (celestialObject.getDiameter() < 0.0 ) {
+            setColor(Color.PINK);
+        }
+        else if (celestialObject.getDiameter() < .2) {
             setColor(Color.red);
         }
-        else  if (celestialObject.getDiameter() > .5) {
+        else  if (celestialObject.getDiameter() < .5) {
             setColor(Color.ORANGE);
         }
-        else if (celestialObject.getDiameter() < 100.0){
+        else if (celestialObject.getDiameter() < 12.0){
             setColor(Color.BLUE);
         }
         else {
