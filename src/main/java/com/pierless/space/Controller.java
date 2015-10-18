@@ -86,7 +86,7 @@ public class Controller {
         XYChart xyChart = new XYChart();
         for (CelestialObject celestialObject : celestialObjects) {
             DisplayObject displayObject = new DisplayObject();
-            displayObject.builder(celestialObject, 10);
+            displayObject.builder(celestialObject, 1);
             xyChart.addThingsToGraph(displayObject);
         }
 

@@ -27,7 +27,8 @@ public class ExoplanetFetcher {
     private HttpTransport httpTransport = new NetHttpTransport();
     private  VOTABLE votable = null;
     static final Logger logger = Logger.getLogger(ExoplanetFetcher.class);
-    private  static final String NASA_EXOPLANET_URL = "http://exoplanetarchive.ipac.caltech.edu/cgi-bin/nstedAPI/nph-nstedAPI?table=exoplanets&where=st_dist%3C25&format=xml&select=pl_radj,pl_name,st_dist,ra,dec,pl_massj,pl_msinij&order=pl_radj";
+//    private  static final String NASA_EXOPLANET_URL = "http://exoplanetarchive.ipac.caltech.edu/cgi-bin/nstedAPI/nph-nstedAPI?table=exoplanets&where=st_dist%3C25&format=xml&select=pl_radj,pl_name,st_dist,ra,dec,pl_massj,pl_msinij&order=pl_radj";
+    private  static final String NASA_EXOPLANET_URL = "http://exoplanetarchive.ipac.caltech.edu/cgi-bin/nstedAPI/nph-nstedAPI?table=exoplanets&where=st_dist%3C500&format=xml&select=pl_radj,pl_name,st_dist,ra,dec,pl_massj,pl_msinij&order=pl_radj";
 
 
 
